@@ -5,7 +5,6 @@ int first_index(int arr[], int size,int num)
 {
 	if(arr[0]==num)
 	{
-		cout<<"returning this val\n";
 		return 0;
 	}
 		if(size==1 && arr[size]!=num)
