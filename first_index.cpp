@@ -8,7 +8,14 @@ int first_index(int arr[], int size,int num)
 		cout<<"returning this val\n";
 		return 0;
 	}
+		if(size==1 && arr[size]!=num)
+	{
+		return -1;
+	}
 	int smallOutput = first_index(arr+1, size-1, num);
+	if (smallOutput==-1)
+	return smallOutput;
+	else
 	return smallOutput+1; 
 }
 
