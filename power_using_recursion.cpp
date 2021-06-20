@@ -6,10 +6,7 @@ int power_recurse(int base, int power)
 	{
 		return 1;
 	}
-	int ans =  power_recurse(base,power-1);
-	cout<<"Value of function: "<<ans<<endl;
-	ans = ans*base;
-	cout<<"Value of ans: "<<ans<<endl;
+	int ans =  base * power_recurse(base,power-1);
 	return ans;
 	
 	
