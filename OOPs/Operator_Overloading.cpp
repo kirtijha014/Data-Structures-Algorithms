@@ -26,7 +26,7 @@ class Fraction{
 		denominator = denominator/gcd;
 	}
 	//Function Overloading
-	Fraction operator+(Fraction const &f2)
+	Fraction operator+(Fraction const &f2) const
 	{
 		int lcm = denominator * f2.denominator;
 		int x = lcm / this->denominator;
@@ -38,13 +38,19 @@ class Fraction{
 		return fadd;
 	}
 	
-	Fraction operator*(Fraction const &f2)
+	Fraction operator*(Fraction const &f2) const
 	{
 		int num = numerator * f2.numerator;
 		int den = denominator * f2.denominator;
 		Fraction fmul(num,den);
 		fmul.simplify();
 		return fmul;
+	}
+	
+	
+	bool operator==(Fraction const &f2) const
+	{
+		return(numerator==f2.numerator && denominator ==f2.denominator);
 	}
 	void display()
 	{
@@ -56,7 +62,7 @@ class Fraction{
 int main()
 {
 	Fraction f1(10,4);
-	Fraction f2(10,2);
+	Fraction f2(10,4);
 	Fraction f3 = f1 + f2;
 	f1.display();
 	f2.display();
@@ -65,4 +71,13 @@ int main()
 	f4.display();
 	f1.display();
 	f2.display();
+	if(f1 == f2)
+	{
+		cout << "Equal";
+	}
+	else
+	{
+		cout << "Not Equal";
+	}
+	
 }
