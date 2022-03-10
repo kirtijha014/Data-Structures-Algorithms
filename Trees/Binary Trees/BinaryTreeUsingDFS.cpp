@@ -35,6 +35,8 @@ BinaryTreeNode<int>* takeInputDFS()
     BinaryTreeNode<int>* rightChild = takeInputDFS();
     root-> left = leftChild;
     root-> right = rightChild;
+
+    return root;
 }
 
 void printBinaryTree(BinaryTreeNode<int> *root)
