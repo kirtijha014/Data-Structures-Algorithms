@@ -1,6 +1,26 @@
  #include<iostream>
-#include "TreeNode.h"
+#include <vector>
 using namespace std;
+template<typename T>
+class TreeNode{
+
+    public:
+    T data;
+    vector<TreeNode *> children;
+    TreeNode (T data)
+    {
+        this->data = data;
+    }
+    //For De Allocating the Tree
+     ~TreeNode()
+     {
+         for(int i = 0 ; i < children.size(); i++)
+         {
+             delete(children[i]);
+         }
+     }
+
+};
 
 void printTree(TreeNode<int>* root)
 {

@@ -1,0 +1,18 @@
+#include<vector>
+#inlude<iostream>
+template<typename T>
+class TreeNode{
+    T data;
+    vector<TreeNode *> children;
+    TreeNode(T data)
+    {
+        this->data = data;
+    }
+    ~TreeNode()
+    {
+        for(int i = 0; i < children.size(); i++)
+        {
+            delete(children[i]);
+        }
+    }
+}
