@@ -21,6 +21,21 @@ class BinaryTreeNode{
     }
 
 };
+BinaryTreeNode<int>* takeInputDFS()
+{
+    int rootData;
+    cout << "Enter data : " << endl;
+    cin >> rootData;
+    if(rootData == -1)
+    {
+        return NULL;
+    }
+    BinaryTreeNode<int>* root = new BinaryTreeNode<int>(rootData);
+    BinaryTreeNode<int> * leftChild = takeInputDFS();
+    BinaryTreeNode<int>* rightChild = takeInputDFS();
+    root-> left = leftChild;
+    root-> right = rightChild;
+}
 
 void printBinaryTree(BinaryTreeNode<int> *root)
 {
@@ -30,11 +45,11 @@ void printBinaryTree(BinaryTreeNode<int> *root)
         return;
     }
     cout << root -> data  << " : ";
-    if(root-> left)
+    if(root-> left != NULL)
     {
         cout << "LeftChild : " << root->left->data << " ";
     }
-    if(root-> right)
+    if(root-> right != NULL)
     {
         cout << "RightChild : " << root->right->data << " ";
     }
@@ -49,11 +64,9 @@ void printBinaryTree(BinaryTreeNode<int> *root)
 }
 int main()
 {
-    BinaryTreeNode<int> *root = new BinaryTreeNode<int>(1);
-    BinaryTreeNode<int> *node1 = new BinaryTreeNode<int>(2);
-    BinaryTreeNode<int> *node2 = new BinaryTreeNode<int>(3);
-    root -> left = node1;
-    root -> right = node2;
+    BinaryTreeNode<int> *root = takeInputDFS();
     printBinaryTree(root);
+
+    delete root;
 
 }
