@@ -55,6 +55,8 @@ bool isValid(string s)
         break;
     }   
     }
+     if(brackets.size()!= 0)
+    return false;
     return true;
 
 }
