@@ -1,25 +1,79 @@
-#include <iostream>
-#include <queue>
+#include<iostream>
+#include<queue>
+#include<math.h>
 using namespace std;
-template <typename T>
-class BinaryTreeNode
-{
-public:
-    T data;
-    BinaryTreeNode *left;
-    BinaryTreeNode *right;
-    BinaryTreeNode(T data)
-    {
-        this->data = data;
-        left = NULL;
-        right = NULL;
-    }
-    ~BinaryTreeNode()
-    {
-        delete left;
-        delete right;
-    }
+template<typename T>
+
+class BinaryTreeNode{
+    public:
+         T data;
+         BinaryTreeNode *left;
+         BinaryTreeNode *right;
+         BinaryTreeNode(T data)
+         {
+             this -> data = data;
+            left = NULL;
+            right = NULL;
+
+         }
+
+         ~BinaryTreeNode()
+         {
+             delete left;
+             delete right;
+         }
 };
+
+int height(BinaryTreeNode<int>* root)
+{
+    if(root == NULL)
+    return 0;
+    int leftTree = height(root -> left);
+    int rightTree = height(root-> right);
+    int height = max(leftTree,rightTree) + 1;
+    return height;
+
+}
+int sum(BinaryTreeNode<int>* root)
+{
+    if(root == NULL)
+    {
+        return 0;
+    }
+    int leftSum = sum(root -> left);
+    int rightSum = sum(root -> right);
+    int totalSum = leftSum + rightSum + root -> data;
+    return totalSum;
+
+}
+int size(BinaryTreeNode<int>* root)
+{
+    if(root == NULL)
+    return 0;
+    int leftSize = size(root -> left);
+    int rightSize = size(root -> right);
+    int totalSize = leftSize + rightSize + 1;
+    return totalSize;
+}
+int maxNode(BinaryTreeNode<int>* root)
+{
+    if(root == NULL)
+    return INT_MIN;
+    int leftMax = maxNode(root -> left);
+    int rightMax = maxNode(root -> right);
+    int maximum = max(root->data, max(leftMax,rightMax));
+    return maximum;
+
+}
+int minNode(BinaryTreeNode<int> * root)
+{
+    if(root == NULL)
+    return INT_MAX;
+    int leftMin = minNode(root -> left);
+    int rightMin = minNode(root -> right);
+    int minimum = min(root->data,min(leftMin,rightMin));
+    return minimum;
+}
 BinaryTreeNode<int> *takeInputBFS()
 {
 
@@ -80,17 +134,22 @@ void printBinaryTree(BinaryTreeNode<int> *root)
             cout << "RightChild : " << front->right->data << " ";
             pendingNodes.push(front->right);
         }
-
-        if (root->left == NULL && root->right == NULL)
+        if (front->left == NULL && front->right == NULL)
             cout << "Leaf Node";
 
         cout << endl;
     }
 }
+//50 82 75 12 36 25 30 -1 -1 87 -1 70 76 -1 -1 -1 -1 -1 -1 -1 -1
 
 int main()
 {
     BinaryTreeNode<int> *root = takeInputBFS();
     printBinaryTree(root);
+    cout << "\nHeight : " << height(root);
+    cout << "\nSum : " << sum(root);
+    cout << "\nSize : " << size(root);
+    cout << "\nMaximum : " << maxNode(root);
+    cout << "\nMinimum : " << minNode(root);
     delete root;
 }
