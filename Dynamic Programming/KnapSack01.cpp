@@ -7,7 +7,9 @@ int knapsack(int totalWeight, int *value, int *weight, int size)
     return 0;
 
     if(weight[size - 1] <= totalWeight)
-    return max(value[])
+    return max(value[size - 1]+knapsack(totalWeight - 1,value, weight, size- 1),knapsack(totalWeight, value, weight, size - 1));
+    else if(weight[size - 1] > totalWeight)
+    return knapsack(totalWeight,value,weight,size - 1);
 }
 
 int main()
