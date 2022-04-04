@@ -10,10 +10,9 @@ class BinaryTreeNode{
          BinaryTreeNode *right;
          BinaryTreeNode(T data)
          {
-             this -> data = data;
+            this -> data = data;
             left = NULL;
             right = NULL;
-
          }
 
          ~BinaryTreeNode()
