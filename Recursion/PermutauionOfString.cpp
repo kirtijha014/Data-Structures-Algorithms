@@ -11,4 +11,5 @@ int main()
         cin >> array[i];
     }
     
+    
 }
