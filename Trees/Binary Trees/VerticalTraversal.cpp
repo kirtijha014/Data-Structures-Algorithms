@@ -59,42 +59,40 @@ Node* takeInput()
 }
 vector<int> verticalTraversal(Node* root)
 {
-     map<int,map<int,vector<int>>>Nodes;
-        queue<pair<Node*,pair<int,int>>>pendingNodes;
-        vector<int>ans;
-        if(root == NULL)
-        return ans;
-        pendingNodes.push(make_pair(root,make_pair(0,0)));
-        while(!pendingNodes.empty())
-        {
-            pair<Node*,pair<int,int>> temp = pendingNodes.front();
-            pendingNodes.pop();
-            Node* front = temp.first;
-            int hd = temp.second.first;
-            int level = temp.second.second;
+    map<int,map<int,vector<int>>>Nodes;
+    queue<pair<Node*,pair<int,int>>>pendingNodes;
+    vector<int>ans;
+    if(root == NULL)
+    return ans;
+    pendingNodes.push(make_pair(root,make_pair(0,0)));
+    while(!pendingNodes.empty())
+    {
+        pair<Node*,pair<int,int>> temp = pendingNodes.front();
+        pendingNodes.pop();
+        Node* front = temp.first;
+        int hd = temp.second.first;
+        int level = temp.second.second;
             
-            Nodes[hd][level].push_back(front -> data);
-            if(front -> left)
-            {
-                pendingNodes.push(make_pair(front->left,make_pair(hd-1,level+1)));
-            }
-            if(front -> right)
-            {
-                pendingNodes.push(make_pair(front->right,make_pair(hd+1,level+1)));
-                
-            }
-        }
-        for(auto i:Nodes)
+        Nodes[hd][level].push_back(front -> data);
+        if(front -> left)
         {
-            for(auto j : i.second)
-            {
-                for(auto k : j.second)
-                
-                ans.push_back(k);
-            }
-            
+            pendingNodes.push(make_pair(front->left,make_pair(hd-1,level+1)));
         }
-        return ans;
+        if(front -> right)
+        {
+            pendingNodes.push(make_pair(front->right,make_pair(hd+1,level+1)));
+                
+        }
+    }
+    for(auto i:Nodes)
+    {
+        for(auto j : i.second)
+        {
+            for(auto k : j.second)    
+            ans.push_back(k);
+        }    
+    }
+    return ans;
 }
 int main()
 {
